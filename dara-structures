@@ -1,0 +1,54 @@
+  Tab1, tab2 : ARRAY_OF INTEGER [5];
+     i,j,element1,element2 : INTEGER;
+     sum : INTEGER := 0;
+BEGIN
+// Find the sum of repeating element.
+ (FOR i FROM 0 TO Tab1.length -1 STEP 1  DO)
+ (FOR j FROM 0 TO tab2.length -1 STEP 1  DO)
+        IF (Tab1[i] <> tab2[j]) THEN
+            element1:= Tab1[i];
+            element2:= Tab1[j];
+        ELSE
+            element1:= 0;
+            element2:= 0;
+            BREAK; 
+        END_IF
+    
+    //sum
+        sum := sum + element1 + element2 ; 
+    END_FOR
+    END_FOR
+END  
+
+//  method2
+ algorithm the_sum_of_distinct_elements 2 ; 
+// Find the sum of all repeated elements
+VAR
+   htab : HASH_TABLE<INTEGER,INTEGER>;
+   tab: INTEGER[5];
+   i, j,count , element , sum : INTEGER := 0 ;
+   
+BEGIN
+   Read(tab);
+   FOR i FROM 0 TO tab.length -1 STEP 1  DO
+    FOR i FROM 0 TO tab.length -1 STEP 1  DO
+       IF (htab.lookup(tab[i])=true) THEN
+           count := htab.get(tab[i]);
+           htab.insert(tab[i],count+1);
+       ELSE
+           htab.insert(tab[i],1);
+       END_IF
+   END_FOR
+//  we loop the hash table to extract the all repeated elements 
+  FOR i FROM 0 TO tab.length -1 STEP 1  DO
+    FOR i FROM 0 TO tab.length -1 STEP 1  DO
+       IF (htab.get(tab[i]) = tab[j]) THEN
+           element := element+tab[i] ; 
+           else 
+           element := 0 
+           BREAK;
+       END_IF
+   END_FOR
+sum := element*2 ; 
+   Write(sum);
+END
